@@ -22,7 +22,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bd);color:var(--t1);overf
 h1,h2,h3,h4,h5{font-family:'Space Grotesk',sans-serif}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--ba);border-radius:10px}
 ::selection{background:var(--ac);color:var(--sr)}
-
 .scr{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;background:var(--bd)}.scr.on{display:flex}
 .orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.2;animation:of 14s ease-in-out infinite alternate}
 @keyframes of{0%{transform:translate(0,0) scale(1)}50%{transform:translate(25px,-35px) scale(1.08)}100%{transform:translate(-15px,15px) scale(.94)}}
@@ -72,7 +71,7 @@ h1,h2,h3,h4,h5{font-family:'Space Grotesk',sans-serif}
 .mx{font-size:10px;margin-top:4px;opacity:.55}.mr.o .mx{text-align:right;color:var(--sr)}
 .mv{max-width:280px;border-radius:10px;overflow:hidden;margin-bottom:4px}
 .mv img{width:100%;display:block;cursor:pointer}.mv video{width:100%;display:block;border-radius:10px}
-.mn{font-size:11px;font-weight:600;color:var(--ac);margin-bottom:2px}
+.mnn{font-size:11px;font-weight:600;color:var(--ac);margin-bottom:2px}
 .tp span{display:inline-block;width:6px;height:6px;background:var(--t3);border-radius:50%;margin:0 1px;animation:tb 1.2s infinite}
 .tp span:nth-child(2){animation-delay:.2s}.tp span:nth-child(3){animation-delay:.4s}
 @keyframes tb{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
@@ -110,7 +109,7 @@ h1,h2,h3,h4,h5{font-family:'Space Grotesk',sans-serif}
 #co.on{display:flex}
 #rv{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;background:#0a0a12}
 #lv{position:absolute;bottom:110px;right:24px;width:180px;height:135px;border-radius:16px;border:2px solid rgba(255,255,255,.2);object-fit:cover;z-index:10;background:#1a1a2e;transition:opacity .3s}
-.ct{position:absolute;top:0;left:0;right:0;padding:20px 24px;z-index:10;background:linear-gradient(to bottom,rgba(0,0,0,.7),transparent);display:flex;align-items:center;gap:12px}
+.ctb{position:absolute;top:0;left:0;right:0;padding:20px 24px;z-index:10;background:linear-gradient(to bottom,rgba(0,0,0,.7),transparent);display:flex;align-items:center;gap:12px}
 .cb2{position:absolute;bottom:0;left:0;right:0;padding:24px;z-index:10;background:linear-gradient(to top,rgba(0,0,0,.7),transparent);display:flex;justify-content:center}
 .cc{width:56px;height:56px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;font-size:20px;color:#fff;background:rgba(255,255,255,.15);backdrop-filter:blur(10px)}
 .cc:hover{background:rgba(255,255,255,.25)}.cc.of{background:var(--co)}
@@ -129,6 +128,19 @@ h1,h2,h3,h4,h5{font-family:'Space Grotesk',sans-serif}
 .df{height:100%;border-radius:3px;transition:width .5s,background .5s}
 .eb{background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.3);border-radius:16px;padding:28px;text-align:center}
 .eb i{font-size:36px;color:var(--co);margin-bottom:12px;display:block}
+.offline-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:20px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);font-size:11px;color:var(--go);margin-top:8px}
+.pi{position:relative}.pi i{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--t3)}.pi .fi{padding-left:40px}
+.fu{display:flex;align-items:center;gap:12px;padding:14px;border-radius:12px;background:var(--bt);border:1px solid var(--br);margin-top:12px;animation:su .25s ease-out}
+.fu img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--br)}
+.fu .fi{flex:1}
+.ph-row{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;background:var(--bt);margin-top:8px;cursor:pointer;transition:background .15s}
+.ph-row:hover{background:var(--bh)}
+.ph-row i{color:var(--ac);font-size:13px;flex-shrink:0}
+.ph-row span{font-size:13px;color:var(--t2);font-family:monospace;letter-spacing:.5px}
+.ph-row .copy-i{margin-left:auto;color:var(--t3);font-size:12px;opacity:0;transition:opacity .15s}
+.ph-row:hover .copy-i{opacity:1}
+.nf{text-align:center;padding:16px 0;color:var(--t3);font-size:13px}
+.nf i{display:block;font-size:24px;margin-bottom:8px;opacity:.4}
 </style>
 </head>
 <body>
@@ -147,14 +159,19 @@ h1,h2,h3,h4,h5{font-family:'Space Grotesk',sans-serif}
 <p class="text-sm mt-1" style="color:var(--t3)">Video Calls & Messaging</p>
 </div>
 <div class="flex mb-6"><div class="at on" data-t="l" onclick="sAT('l')">Sign In</div><div class="at" data-t="s" onclick="sAT('s')">Create Account</div></div>
-<div id="lF"><div class="mb-4"><input type="text" class="fi" id="lN" placeholder="Your name" autocomplete="off"></div><button class="bp" onclick="doLogin()">Continue to Chat</button></div>
+<div id="lF">
+<div class="mb-4"><input type="text" class="fi" id="lN" placeholder="Your name" autocomplete="off"></div>
+<div class="mb-4 pi"><i class="fa-solid fa-phone"></i><input type="tel" class="fi" id="lPh" placeholder="Phone number" autocomplete="tel"></div>
+<button class="bp" id="lBtn" onclick="doLogin()">Continue to Chat</button>
+</div>
 <div id="sF" style="display:none">
 <div class="mb-4"><input type="text" class="fi" id="sN" placeholder="Full name" autocomplete="off"></div>
+<div class="mb-4 pi"><i class="fa-solid fa-phone"></i><input type="tel" class="fi" id="sPh" placeholder="Phone number" autocomplete="tel"></div>
 <div class="mb-4"><input type="text" class="fi" id="sB" placeholder="Short bio (optional)" autocomplete="off"></div>
 <div class="mb-4 flex items-center justify-between"><span class="text-sm" style="color:var(--t2)">Business Profile</span><div class="tgl" id="bT" onclick="this.classList.toggle('on');document.getElementById('bF').style.display=this.classList.contains('on')?'block':'none'"></div></div>
 <div id="bF" style="display:none" class="mb-4 space-y-3"><input type="text" class="fi" id="sC" placeholder="Company name"><input type="text" class="fi" id="sR" placeholder="Your role / title"></div>
 <div class="mb-5"><p class="text-xs mb-3" style="color:var(--t3)">Choose an avatar</p><div class="flex flex-wrap gap-2" id="aP"></div></div>
-<button class="bp" onclick="doSignup()">Create Account</button>
+<button class="bp" id="sBtn" onclick="doSignup()">Create Account</button>
 </div>
 </div>
 </div>
@@ -166,7 +183,11 @@ h1,h2,h3,h4,h5{font-family:'Space Grotesk',sans-serif}
 <i class="fa-solid fa-wifi"></i>
 <h3 class="text-lg font-bold mb-2">Connection Failed</h3>
 <p class="text-sm mb-5" style="color:var(--t2)" id="LoM">Could not reach the server.</p>
-<button class="bp" onclick="boot()" style="width:auto;padding:12px 36px;display:inline-block"><i class="fa-solid fa-rotate-right mr-2"></i>Retry</button>
+<div class="flex flex-col gap-3">
+<button class="bp" onclick="boot()" id="retryBtn" style="width:100%"><i class="fa-solid fa-rotate-right mr-2"></i>Retry Connection</button>
+<button class="bs" onclick="bootOffline()" style="width:100%;text-align:center"><i class="fa-solid fa-wifi mr-2"></i>Continue Offline</button>
+<button class="bs" onclick="goLogin()" style="width:100%;text-align:center;color:var(--co)"><i class="fa-solid fa-arrow-left mr-2"></i>Back to Login</button>
+</div>
 </div>
 </div>
 
@@ -178,7 +199,10 @@ h1,h2,h3,h4,h5{font-family:'Space Grotesk',sans-serif}
 <img id="uA" class="av as" src="" alt="">
 <div class="min-w-0"><div class="text-sm font-semibold truncate" id="uN"></div><div class="flex items-center gap-1.5"><div class="cd y" id="uDot"></div><span class="text-xs" style="color:var(--t3)" id="uS">Connecting...</span></div></div>
 </div>
-<button class="w-9 h-9 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[var(--bh)]" style="background:var(--bt);border:1px solid var(--br);color:var(--t2)" onclick="oPM()"><i class="fa-solid fa-gear text-sm"></i></button>
+<div class="flex items-center gap-2">
+<button class="w-9 h-9 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[var(--bh)]" style="background:var(--bt);border:1px solid var(--br);color:var(--t2)" onclick="oPM()" title="Settings"><i class="fa-solid fa-gear text-sm"></i></button>
+<button class="w-9 h-9 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[var(--bh)]" style="background:var(--bt);border:1px solid var(--br);color:var(--t2)" onclick="doLogout()" title="Logout"><i class="fa-solid fa-right-from-bracket text-sm"></i></button>
+</div>
 </div>
 <div class="se"><div class="relative"><i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-xs" style="color:var(--t3)"></i><input type="text" class="sr" placeholder="Search..." oninput="dS(this.value)"></div></div>
 <div class="tb"><button class="ti on" data-t="chats" onclick="sT('chats')"><i class="fa-solid fa-message mr-1"></i>Chats</button><button class="ti" data-t="groups" onclick="sT('groups')"><i class="fa-solid fa-users mr-1"></i>Groups</button><button class="ti" data-t="contacts" onclick="sT('contacts')"><i class="fa-solid fa-address-book mr-1"></i>Contacts</button></div>
@@ -189,13 +213,14 @@ h1,h2,h3,h4,h5{font-family:'Space Grotesk',sans-serif}
 <div class="ei"><i class="fa-solid fa-video"></i></div>
 <h2 class="text-xl font-semibold">Business Meet</h2>
 <p class="text-sm" style="color:var(--t3);max-width:320px;text-align:center">Chat, share media, and start video calls. Built for business and socializing.</p>
+<div class="offline-badge" id="offBadge" style="display:none"><i class="fa-solid fa-wifi"></i>Offline Mode</div>
 </div>
 <div id="aC" style="display:none;flex-direction:column;height:100%">
 <div class="ch">
 <button class="bb" onclick="cC()"><i class="fa-solid fa-arrow-left text-sm"></i></button>
 <div class="relative cursor-pointer" onclick="tIP()"><img id="cA" class="av as" src="" alt=""><div class="od" id="cO" style="display:none"></div></div>
 <div class="flex-1 cursor-pointer min-w-0" onclick="tIP()"><div class="text-sm font-semibold truncate" id="cN"></div><div class="text-xs" style="color:var(--t3)" id="cSb"></div></div>
-<button class="w-9 h-9 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[var(--bh)]" style="background:var(--bt);border:1px solid var(--br);color:var(--t2)" id="cB" onclick="sC()" title="Video Call"><i class="fa-solid fa-video text-sm"></i></button>
+<button class="w-9 h-9 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[var(--bh)]" style="background:var(--bt);border:1px solid var(--br);color:var(--t2)" id="cB" onclick="startC()" title="Video Call"><i class="fa-solid fa-video text-sm"></i></button>
 <button class="w-9 h-9 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[var(--bh)]" style="background:var(--bt);border:1px solid var(--br);color:var(--t2)" onclick="tIP()"><i class="fa-solid fa-circle-info text-sm"></i></button>
 </div>
 <div class="cbg"></div>
@@ -226,7 +251,7 @@ h1,h2,h3,h4,h5{font-family:'Space Grotesk',sans-serif}
 <h3 class="text-xl font-bold mb-2" id="cNm"></h3>
 <p class="text-sm" style="color:var(--t3)" id="cSt">Calling...</p>
 </div>
-<div class="ct"><div class="flex-1"><h3 class="text-white font-semibold text-base" id="cTN"></h3><p class="text-sm" style="color:rgba(255,255,255,.7)" id="cTi">Connecting...</p></div>
+<div class="ctb"><div class="flex-1"><h3 class="text-white font-semibold text-base" id="cTN"></h3><p class="text-sm" style="color:rgba(255,255,255,.7)" id="cTi">Connecting...</p></div>
 <div class="cq" id="cQ"><div class="qb on"></div><div class="qb on"></div><div class="qb on"></div><div class="qb on"></div><span id="cQL">Excellent</span></div></div>
 <div class="cb2"><div class="flex gap-5">
 <button class="cc" id="miB" onclick="tMi()" title="Mute"><i class="fa-solid fa-microphone"></i></button>
@@ -247,6 +272,23 @@ h1,h2,h3,h4,h5{font-family:'Space Grotesk',sans-serif}
 </div>
 </div>
 
+<!-- ADD CONTACT MODAL -->
+<div class="mo" id="acM">
+<div class="mx2">
+<div class="flex items-center justify-between mb-6"><h3 class="text-lg font-bold">Add Contact</h3><button class="mc" onclick="cMo('acM')"><i class="fa-solid fa-xmark text-xs"></i></button></div>
+<div class="space-y-4">
+<div><label class="text-xs font-medium block mb-1" style="color:var(--t3)">Search by Phone Number</label><div class="pi"><i class="fa-solid fa-phone"></i><input type="tel" class="fi" id="acPh" placeholder="Enter their phone number" onkeydown="if(event.key==='Enter')findUser()"></div></div>
+<button class="bp" onclick="findUser()" id="acBtn"><i class="fa-solid fa-magnifying-glass mr-2"></i>Search</button>
+<div id="acRes"></div>
+<div style="border-top:1px solid var(--br);padding-top:16px;margin-top:8px">
+<p class="text-xs font-medium mb-2" style="color:var(--t3)">Share Your Number</p>
+<p class="text-xs mb-2" style="color:var(--t3)">Give this number to friends so they can find you:</p>
+<div class="ph-row" onclick="copyPh()"><i class="fa-solid fa-phone"></i><span id="acMyPh">—</span><i class="fa-regular fa-copy copy-i"></i></div>
+</div>
+</div>
+</div>
+</div>
+
 <!-- PROFILE MODAL -->
 <div class="mo" id="pM">
 <div class="mx2">
@@ -254,10 +296,11 @@ h1,h2,h3,h4,h5{font-family:'Space Grotesk',sans-serif}
 <div class="text-center mb-6"><img id="pAv" class="av al mx-auto mb-3" src="" alt=""><p class="text-xs" style="color:var(--t3)">Avatar set during signup</p></div>
 <div class="space-y-4">
 <div><label class="text-xs font-medium block mb-1" style="color:var(--t3)">Display Name</label><input type="text" class="fi" id="pNm"></div>
+<div><label class="text-xs font-medium block mb-1" style="color:var(--t3)">Phone Number</label><div class="pi"><i class="fa-solid fa-phone"></i><input type="tel" class="fi" id="pPh" placeholder="Phone number"></div><p class="text-xs mt-1" style="color:var(--t3)">Others use this to find you</p></div>
 <div><label class="text-xs font-medium block mb-1" style="color:var(--t3)">Bio</label><input type="text" class="fi" id="pBi"></div>
 <div class="flex items-center justify-between"><span class="text-sm" style="color:var(--t2)">Business Profile</span><div class="tgl" id="pBz" onclick="this.classList.toggle('on');document.getElementById('pBF').style.display=this.classList.contains('on')?'block':'none'"></div></div>
 <div id="pBF" style="display:none" class="space-y-4"><div><label class="text-xs font-medium block mb-1" style="color:var(--t3)">Company</label><input type="text" class="fi" id="pCo"></div><div><label class="text-xs font-medium block mb-1" style="color:var(--t3)">Role</label><input type="text" class="fi" id="pRo"></div></div>
-<div class="p-3 rounded-lg flex items-center gap-2" style="background:var(--bt)"><i class="fa-solid fa-link text-xs" style="color:var(--t3)"></i><span class="text-xs" style="color:var(--t3)">Database connected</span><div class="cd g ml-auto"></div></div>
+<div class="p-3 rounded-lg flex items-center gap-2" style="background:var(--bt)"><i class="fa-solid fa-link text-xs" style="color:var(--t3)"></i><span class="text-xs" style="color:var(--t3)" id="dbStat">Database connected</span><div class="cd g ml-auto" id="dbDot"></div></div>
 <button class="bp" onclick="sP()">Save Changes</button>
 </div>
 </div>
@@ -296,158 +339,372 @@ h1,h2,h3,h4,h5{font-family:'Space Grotesk',sans-serif}
 <div class="mo" id="mV" onclick="cMV()"><div id="mVc" onclick="event.stopPropagation()" style="max-width:90vw;max-height:85vh"></div></div>
 
 <script>
-/* ================================================================
-   CONFIGURATION
-   ================================================================ */
 var API='https://script.google.com/macros/s/AKfycbzw4UazPP0Io47xuFR9m90LY9VH78m6iPEbCS08sVVYSeZ4et59JU8XxmYCOY7khKFF/exec';
-
-var RC={
-    iceServers:[
-        {urls:'stun:stun.l.google.com:19302'},
-        {urls:'stun:stun1.l.google.com:19302'},
-        {urls:'stun:stun2.l.google.com:19302'},
-        {urls:'turn:free.expressturn.com:3478',username:'000000002091777068',credential:'66UgORsfBrWYuExBPNZQR6HuGvA='},
-        {urls:'turns:free.expressturn.com:5349',username:'000000002091777068',credential:'66UgORsfBrWYuExBPNZQR6HuGvA='}
-    ],
-    iceTransportPolicy:'all',iceCandidatePoolSize:10
-};
-
-/* ===== DATA ===== */
+var RC={iceServers:[{urls:'stun:stun.l.google.com:19302'},{urls:'stun:stun1.l.google.com:19302'},{urls:'stun:stun2.l.google.com:19302'},{urls:'turn:free.expressturn.com:3478',username:'000000002091777068',credential:'66UgORsfBrWYuExBPNZQR6HuGvA='},{urls:'turns:free.expressturn.com:5349',username:'000000002091777068',credential:'66UgORsfBrWYuExBPNZQR6HuGvA='}],iceTransportPolicy:'all',iceCandidatePoolSize:10};
 var AS=['nexus1','nexus2','nexus3','nexus4','nexus5','nexus6','nexus7','nexus8','nexus9','nexus10','nexus11','nexus12'];
 function ga(s,n){return'https://picsum.photos/seed/'+s+'/'+(n||100)+'/'+(n||100)+'.jpg'}
 var EM=['😀','😂','🥰','😎','🤔','👍','❤️','🔥','🎉','✨','💪','🙏','👏','💯','🤝','🎯','💡','🚀','⭐','😊','🤩','😇','🥳','😋','🤗','😏','🫡','💅','🫶','💀','🤯','👀','💬','📌','✅','⏰','📱','💼','☕','🍕','📷','🎬','🌟','💎','🏆','🎨','📊'];
 var RP=["Got it, thanks!","That sounds great, let's do it.","I'll look into that.","Makes sense. What's the timeline?","Perfect, I'm on it.","Interesting point.","Sure thing! Talk soon.","Haha, nice one!","I was thinking the same.","Let me check and confirm.","Sounds like a plan!","Thanks for the heads up.","I'll send details shortly.","Absolutely, count me in.","Good call."];
+var FALLBACK_CONTACTS=[
+{id:'fc_sarah',name:'Sarah Chen',bio:'Product Lead at TechFlow',avatar:'nexus3',isBiz:true,company:'TechFlow',role:'Product Lead',online:true,phone:'+1 555 234 5678'},
+{id:'fc_marcus',name:'Marcus Webb',bio:'Freelance Designer',avatar:'nexus5',isBiz:false,company:'',role:'',online:true,phone:'+1 555 345 6789'},
+{id:'fc_aisha',name:'Aisha Patel',bio:'Marketing Director',avatar:'nexus7',isBiz:true,company:'GrowthLab',role:'Marketing Director',online:false,phone:'+44 7911 123456'},
+{id:'fc_james',name:'James Okafor',bio:'Full-stack Developer',avatar:'nexus9',isBiz:true,company:'CodeCraft',role:'Senior Developer',online:true,phone:'+1 555 456 7890'},
+{id:'fc_lina',name:'Lina Morales',bio:'Business Consultant',avatar:'nexus2',isBiz:true,company:'Morales & Co',role:'Founder',online:false,phone:'+1 555 567 8901'},
+{id:'fc_tom',name:'Tom Richards',bio:'Sales Manager',avatar:'nexus11',isBiz:true,company:'Apex Solutions',role:'Sales Manager',online:false,phone:'+1 555 678 9012'}
+];
+var FALLBACK_GROUPS=[
+{id:'fg_marketing',name:'Marketing Team',desc:'Q4 campaign planning',members:['fc_sarah','fc_aisha'],avatar:'🎯',createdBy:'',created:Date.now()-86400000},
+{id:'fg_dev',name:'Dev Standup',desc:'Daily sync for the engineering team',members:['fc_james','fc_marcus'],avatar:'💻',createdBy:'',created:Date.now()-172800000}
+];
 
-/* ===== STATE ===== */
-var U={id:null,name:null,bio:null,avatar:null,isBiz:false,company:null,role:null};
-var S={chats:null,tab:'chats',contacts:[],groups:[],msgs:{},online:{},sq:'',ipOn:false,lp:0,pt:null,st:null};
+var U={id:null,name:null,bio:null,avatar:null,isBiz:false,company:null,role:null,phone:null};
+var S={chats:null,tab:'chats',contacts:[],groups:[],msgs:{},online:{},sq:'',ipOn:false,lp:0,pt:null,st:null,offline:false};
 var C={on:false,pc:null,ls:null,rs:null,sid:null,oid:null,cid:null,ct:null,tid:null,ti:null,t0:null,mic:true,cam:true,to:null,ito:null,qi:null};
+
+/* ===== PHONE HELPERS ===== */
+function cleanPh(raw){return(raw||'').replace(/[\s\-\(\)\.]/g,'').replace(/^\+/,'')}
+function validPh(raw){var d=cleanPh(raw);return d.length>=7&&/^\d+$/.test(d)}
+function fmtPh(raw){if(!raw)return'—';return raw}
 
 /* ===== INIT ===== */
 function init(){
-    var uid=localStorage.getItem('bm_u');
-    if(uid){U.id=uid;sS('LoS');boot();return}
     var pk=document.getElementById('aP');
-    AS.forEach(function(s,i){var img=document.createElement('img');img.src=ga(s,80);img.className='ap'+(i===0?' on':'');img.dataset.s=s;img.onclick=function(){pk.querySelectorAll('.ap').forEach(function(a){a.classList.remove('on')});img.classList.add('on')};pk.appendChild(img)});
-    var ep=document.getElementById('eP'),eg=document.createElement('div');eg.className='eg';
-    EM.forEach(function(e){var sp=document.createElement('span');sp.className='ei2';sp.textContent=e;sp.onclick=function(){document.getElementById('mI2').value+=e;document.getElementById('mI2').focus()};eg.appendChild(sp)});ep.appendChild(eg);
-    document.getElementById('lN').addEventListener('keydown',function(e){if(e.key==='Enter')doLogin()});
+    if(pk){AS.forEach(function(s,i){var img=document.createElement('img');img.src=ga(s,80);img.className='ap'+(i===0?' on':'');img.dataset.s=s;img.onclick=function(){pk.querySelectorAll('.ap').forEach(function(a){a.classList.remove('on')});img.classList.add('on')};pk.appendChild(img)})}
+    var ep=document.getElementById('eP');
+    if(ep){var eg=document.createElement('div');eg.className='eg';EM.forEach(function(e){var sp=document.createElement('span');sp.className='ei2';sp.textContent=e;sp.onclick=function(){document.getElementById('mI2').value+=e;document.getElementById('mI2').focus()};eg.appendChild(sp)});ep.appendChild(eg)}
+    var lN=document.getElementById('lN');if(lN)lN.addEventListener('keydown',function(e){if(e.key==='Enter')doLogin()});
+    var uid=localStorage.getItem('bm_u');
+    if(uid){U.id=uid;var saved=localStorage.getItem('bm_profile');if(saved){try{var p=JSON.parse(saved);Object.assign(U,p)}catch(e){}}sS('LoS');boot();return}
+    sS('LS');
 }
+
 function sS(id){document.querySelectorAll('.scr').forEach(function(s){s.classList.remove('on')});if(id!=='n')document.getElementById(id).classList.add('on')}
+function sAT(t){document.querySelectorAll('.at').forEach(function(a){a.classList.toggle('on',a.dataset.t===t)});document.getElementById('lF').style.display=t==='l'?'block':'none';document.getElementById('sF').style.display=t==='s'?'block':'none'}
 
 /* ===== AUTH ===== */
-function sAT(t){document.querySelectorAll('.at').forEach(function(a){a.classList.toggle('on',a.dataset.t===t)});document.getElementById('lF').style.display=t==='l'?'block':'none';document.getElementById('sF').style.display=t==='s'?'block':'none'}
-function doLogin(){var n=document.getElementById('lN').value.trim();if(!n){tst('Enter your name','w');return}U.id='u_'+Date.now().toString(36)+Math.random().toString(36).substr(2,4);U.name=n;U.bio='Available';U.avatar='nexus1';localStorage.setItem('bm_u',U.id);sS('LoS');boot()}
-function doSignup(){var n=document.getElementById('sN').value.trim();if(!n){tst('Enter your name','w');return}var sel=document.querySelector('.ap.on');U.id='u_'+Date.now().toString(36)+Math.random().toString(36).substr(2,4);U.name=n;U.bio=document.getElementById('sB').value.trim()||'Hey there!';U.avatar=sel?sel.dataset.s:'nexus1';U.isBiz=document.getElementById('bT').classList.contains('on');U.company=document.getElementById('sC').value.trim();U.role=document.getElementById('sR').value.trim();localStorage.setItem('bm_u',U.id);sS('LoS');boot()}
+function doLogin(){
+    var n=document.getElementById('lN').value.trim();
+    var ph=document.getElementById('lPh').value.trim();
+    if(!n){tst('Please enter your name','w');document.getElementById('lN').focus();return}
+    if(!ph||!validPh(ph)){tst('Please enter a valid phone number (min 7 digits)','w');document.getElementById('lPh').focus();return}
+    var btn=document.getElementById('lBtn');btn.disabled=true;btn.textContent='Signing in...';
+    U.id='u_'+Date.now().toString(36)+Math.random().toString(36).substr(2,4);
+    U.name=n;U.phone=ph;U.bio='Available';U.avatar='nexus1';U.isBiz=false;U.company='';U.role='';
+    localStorage.setItem('bm_u',U.id);saveProfile();sS('LoS');
+    boot().finally(function(){btn.disabled=false;btn.textContent='Continue to Chat'});
+}
+
+function doSignup(){
+    var n=document.getElementById('sN').value.trim();
+    var ph=document.getElementById('sPh').value.trim();
+    if(!n){tst('Please enter your name','w');document.getElementById('sN').focus();return}
+    if(!ph||!validPh(ph)){tst('Please enter a valid phone number (min 7 digits)','w');document.getElementById('sPh').focus();return}
+    var btn=document.getElementById('sBtn');btn.disabled=true;btn.textContent='Creating...';
+    var sel=document.querySelector('#aP .ap.on');
+    U.id='u_'+Date.now().toString(36)+Math.random().toString(36).substr(2,4);
+    U.name=n;U.phone=ph;U.bio=document.getElementById('sB').value.trim()||'Hey there!';
+    U.avatar=sel?sel.dataset.s:'nexus1';
+    U.isBiz=document.getElementById('bT').classList.contains('on');
+    U.company=document.getElementById('sC').value.trim();U.role=document.getElementById('sR').value.trim();
+    localStorage.setItem('bm_u',U.id);saveProfile();sS('LoS');
+    boot().finally(function(){btn.disabled=false;btn.textContent='Create Account'});
+}
+
+function saveProfile(){localStorage.setItem('bm_profile',JSON.stringify({name:U.name,bio:U.bio,avatar:U.avatar,isBiz:U.isBiz,company:U.company,role:U.role,phone:U.phone}))}
+
+function goLogin(){
+    localStorage.removeItem('bm_u');localStorage.removeItem('bm_profile');
+    U={id:null,name:null,bio:null,avatar:null,isBiz:false,company:null,role:null,phone:null};
+    if(S.pt){clearInterval(S.pt);S.pt=null}if(S.st){clearInterval(S.st);S.st=null}
+    document.getElementById('app').classList.remove('on');document.getElementById('lN').value='';document.getElementById('lPh').value='';sS('LS');
+}
+
+function doLogout(){
+    if(S.pt){clearInterval(S.pt);S.pt=null}if(S.st){clearInterval(S.st);S.st=null}
+    if(!S.offline&&U.id){ap({action:'logout',userId:U.id}).catch(function(){})}
+    goLogin();tst('Logged out','i');
+}
 
 /* ===== BOOT ===== */
 async function boot(){
     document.getElementById('LoC').style.display='block';document.getElementById('LoE').style.display='none';document.getElementById('LoT').textContent='Connecting...';
     try{
-        await ap({action:'login',userId:U.id,name:U.name||'',bio:U.bio||'',avatar:U.avatar||'nexus1',isBusiness:U.isBiz||false,company:U.company||'',role:U.role||''});
-        document.getElementById('LoT').textContent='Loading data...';
+        var ctrl=new AbortController();var timeout=setTimeout(function(){ctrl.abort()},10000);
+        await ap({action:'login',userId:U.id,name:U.name||'',bio:U.bio||'',avatar:U.avatar||'nexus1',isBusiness:U.isBiz||false,company:U.company||'',role:U.role||'',phone:U.phone||''},ctrl.signal);
+        clearTimeout(timeout);document.getElementById('LoT').textContent='Loading data...';
         var d=await ap({action:'getAll',userId:U.id});if(d.error)throw new Error(d.error);
-        U.name=d.userName||U.name;U.bio=d.userBio||U.bio;U.avatar=d.userAvatar||U.avatar;U.isBiz=d.userIsBiz||U.isBiz;U.company=d.userCompany||U.company;U.role=d.userRole||U.role;
-        S.contacts=d.contacts||[];S.online=d.onlineUsers||{};S.groups=d.groups||[];
-        S.msgs={};(d.messages||[]).forEach(function(m){if(!S.msgs[m.chatId])S.msgs[m.chatId]=[];S.msgs[m.chatId].push(m)});
-        S.lp=d.serverTime||Date.now();sApp();sPoll();sSig();
-    }catch(e){
-        document.getElementById('LoC').style.display='none';document.getElementById('LoE').style.display='block';
-        document.getElementById('LoM').textContent=e.message||'Could not reach the server. Check your connection.';
-    }
+        U.name=d.userName||U.name;U.bio=d.userBio||U.bio;U.avatar=d.userAvatar||U.avatar;U.isBiz=d.userIsBiz||U.isBiz;U.company=d.userCompany||U.company;U.role=d.userRole||U.role;U.phone=d.userPhone||U.phone;
+        saveProfile();S.contacts=d.contacts||[];S.online=d.onlineUsers||{};S.groups=d.groups||[];S.msgs={};
+        (d.messages||[]).forEach(function(m){if(!S.msgs[m.chatId])S.msgs[m.chatId]=[];S.msgs[m.chatId].push(m)});
+        S.lp=d.serverTime||Date.now();S.offline=false;sApp();sPoll();sSig();return;
+    }catch(e){console.warn('API failed, falling back to offline:',e.message)}
+    bootOffline();
+}
+
+function bootOffline(){
+    S.offline=true;S.contacts=FALLBACK_CONTACTS.slice();S.groups=FALLBACK_GROUPS.slice();S.msgs={};S.online={};
+    if(!U.phone)U.phone='+1 555 999 0000';
+    S.contacts.forEach(function(c){S.online[c.id]=c.online});
+    var now=Date.now();
+    S.contacts.forEach(function(c){var cid=gci(c.id);S.msgs[cid]=[];var count=2+Math.floor(Math.random()*2);for(var i=0;i<count;i++){var fromMe=Math.random()>0.5;S.msgs[cid].push({id:'fm_'+c.id+'_'+i,chatId:cid,chatType:'contact',from:fromMe?U.id:c.id,text:fromMe?'Hey, how are you?':RP[Math.floor(Math.random()*RP.length)],type:'text',time:now-(count-i)*300000-Math.random()*120000,readBy:[]})}});
+    S.groups.forEach(function(g){S.msgs[g.id]=[];S.msgs[g.id].push({id:'gm_'+g.id+'_0',chatId:g.id,chatType:'group',from:g.members[0]||U.id,text:'Welcome to '+g.name+'!',type:'text',time:now-600000,readBy:[]})});
+    S.lp=now;sApp();tst('Running in offline mode','w');
 }
 
 function sApp(){
     sS('n');document.getElementById('app').classList.add('on');
     document.getElementById('uA').src=ga(U.avatar,80);document.getElementById('uN').textContent=U.name;uCo(true);rL();
+    if(S.offline){document.getElementById('offBadge').style.display='inline-flex';document.getElementById('dbStat').textContent='Offline — local data only';var dd=document.getElementById('dbDot');if(dd)dd.className='cd r ml-auto'}
+    else{document.getElementById('offBadge').style.display='none';document.getElementById('dbStat').textContent='Database connected';var dd2=document.getElementById('dbDot');if(dd2)dd2.className='cd g ml-auto'}
+    document.getElementById('acMyPh').textContent=fmtPh(U.phone);
 }
-function uCo(ok){document.getElementById('uDot').className='cd '+(ok?'g':'r');var s=document.getElementById('uS');if(U.isBiz&&ok)s.textContent=U.role+(U.company?' at '+U.company:'');else s.textContent=ok?'Connected':'Disconnected'}
 
-/* ===== API ===== */
-async function ap(d){var r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(d)});if(!r.ok)throw new Error('Server error '+r.status);return r.json()}
+function uCo(ok){
+    document.getElementById('uDot').className='cd '+(ok?'g':'r');var s=document.getElementById('uS');
+    if(S.offline)s.textContent='Offline';else if(U.isBiz&&ok)s.textContent=U.role+(U.company?' at '+U.company:'');else s.textContent=ok?'Connected':'Disconnected';
+}
+
+async function ap(d,signal){var opts={method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(d)};if(signal)opts.signal=signal;var r=await fetch(API,opts);if(!r.ok)throw new Error('Server error '+r.status);return r.json()}
 
 /* ===== POLLING ===== */
-function sPoll(){if(S.pt)clearInterval(S.pt);S.pt=setInterval(async function(){if(C.on)return;try{var d=await ap({action:'poll',userId:U.id,since:S.lp});if(d.error){uCo(false);return}uCo(true);S.online=d.onlineUsers||{};if(d.messages&&d.messages.length){d.messages.forEach(function(m){if(!S.msgs[m.chatId])S.msgs[m.chatId]=[];S.msgs[m.chatId].push(m)});S.lp=d.serverTime;if(S.chats&&S.msgs[S.chats.id])rM();rL();d.messages.forEach(function(m){if(m.from!==U.id&&!(S.chats&&S.chats.id===m.chatId))tst((m.chatType==='group'?gCN(m.from):gCN2(m.chatId))+': '+(m.text||'').substring(0,40),'m')})}else S.lp=d.serverTime||Date.now()}catch(e){uCo(false)}},4000)}
-function sSig(){if(S.st)clearInterval(S.st);S.st=setInterval(pSig,3000)}
-async function pSig(){if(C.on)return;try{var d=await ap({action:'pollSignals',userId:U.id});if(!d.signals||!d.signals.length)return;d.signals.forEach(function(s){if(s.type==='offer'&&!C.on)showIC(s);else if(s.type==='answer'&&C.on&&C.sid===s.id)hA(s);else if(s.type==='end'&&C.on)eC(true)})}catch(e){}}
+function sPoll(){if(S.pt)clearInterval(S.pt);if(S.offline)return;S.pt=setInterval(async function(){if(C.on)return;try{var d=await ap({action:'poll',userId:U.id,since:S.lp});if(d.error){uCo(false);return}uCo(true);S.online=d.onlineUsers||{};if(d.messages&&d.messages.length){d.messages.forEach(function(m){if(!S.msgs[m.chatId])S.msgs[m.chatId]=[];S.msgs[m.chatId].push(m)});S.lp=d.serverTime;if(S.chats&&S.msgs[S.chats.id])rM();rL();d.messages.forEach(function(m){if(m.from!==U.id&&!(S.chats&&S.chats.id===m.chatId))tst((m.chatType==='group'?gCN(m.from):gCN2(m.chatId))+': '+(m.text||'').substring(0,40),'m')})}else S.lp=d.serverTime||Date.now()}catch(e){uCo(false)}},4000)}
+function sSig(){if(S.st)clearInterval(S.st);if(S.offline)return;S.st=setInterval(async function(){if(C.on)return;try{var d=await ap({action:'pollSignals',userId:U.id});if(!d.signals||!d.signals.length)return;d.signals.forEach(function(s){if(s.type==='offer'&&!C.on)showIC(s);else if(s.type==='answer'&&C.on&&C.sid===s.id)hA(s);else if(s.type==='end'&&C.on)eC(true)})}catch(e){}},3000)}
 
-/* ===== LIST ===== */
+/* ===== CONTACT LIST ===== */
 function sT(t){S.tab=t;document.querySelectorAll('.ti').forEach(function(b){b.classList.toggle('on',b.dataset.t===t)});rL()}
 function dS(q){S.sq=q.toLowerCase();rL()}
+
 function rL(){
     var l=document.getElementById('cL'),q=S.sq,h='';
     if(S.tab==='chats'){
         var cc=S.contacts.filter(function(c){return(S.msgs[gci(c.id)]||[]).length>0||q});
         cc.sort(function(a,b){return((S.msgs[gci(b.id)]||[]).slice(-1)[0]?.time||0)-((S.msgs[gci(a.id)]||[]).slice(-1)[0]?.time||0)});
-        cc.forEach(function(c){var ci=gci(c.id),ms=S.msgs[ci]||[],lm=ms.slice(-1)[0];if(q&&!c.name.toLowerCase().includes(q)&&!(lm?.text||'').toLowerCase().includes(q))return;h+=cH(ci,'contact',c.name,ga(c.avatar),c.online,c.isBiz,lm,ms.filter(function(m){return m.from!==U.id&&!m.read}).length,S.chats?.id===ci,null,c)});
+        cc.forEach(function(c){var ci=gci(c.id),ms=S.msgs[ci]||[],lm=ms.slice(-1)[0];if(q&&!c.name.toLowerCase().includes(q)&&!(lm?.text||'').toLowerCase().includes(q))return;h+=cH(ci,'contact',c.name,ga(c.avatar),S.online[c.id],c.isBiz,lm,ms.filter(function(m){return m.from!==U.id&&!m.read}).length,S.chats?.id===ci,null,c)});
         S.groups.forEach(function(g){var ms=S.msgs[g.id]||[],lm=ms.slice(-1)[0];if(q&&!g.name.toLowerCase().includes(q))return;h+=cH(g.id,'group',g.name,null,false,false,lm,ms.filter(function(m){return m.from!==U.id&&!m.read}).length,S.chats?.id===g.id,g.avatar,g)});
-        if(!h)h='<div class="text-center py-12" style="color:var(--t3)"><i class="fa-solid fa-message text-2xl mb-3 block" style="opacity:.3"></i><p class="text-sm">No conversations yet</p></div>';
+        if(!h)h='<div class="text-center py-12" style="color:var(--t3)"><i class="fa-solid fa-message text-2xl mb-3 block" style="opacity:.3"></i><p class="text-sm">No conversations yet</p><p class="text-xs mt-1">Add contacts using their phone number</p></div>';
     }else if(S.tab==='groups'){
         h+='<div class="p-3"><button onclick="oGM()" class="w-full py-2.5 px-4 rounded-xl text-sm font-medium flex items-center justify-center gap-2 cursor-pointer" style="background:var(--ag);color:var(--ac);border:1px dashed var(--ac)"><i class="fa-solid fa-plus text-xs"></i>New Group</button></div>';
         S.groups.forEach(function(g){var ms=S.msgs[g.id]||[];if(q&&!g.name.toLowerCase().includes(q))return;h+=cH(g.id,'group',g.name,null,false,false,ms.slice(-1)[0],ms.filter(function(m){return m.from!==U.id&&!m.read}).length,S.chats?.id===g.id,g.avatar,g,g.members.length+1+' members')});
-    }else S.contacts.filter(function(c){return !q||c.name.toLowerCase().includes(q)}).forEach(function(c){h+='<div class="ci" onclick="oC(\'contact\',\''+c.id+'\')"><div class="relative"><img class="av" src="'+ga(c.avatar)+'">'+(c.online?'<div class="od"></div>':'')+'</div><div class="flex-1 min-w-0"><div class="flex items-center gap-2"><span class="text-sm font-semibold truncate">'+c.name+'</span>'+(c.isBiz?'<span class="bz">Biz</span>':'')+'</div><p class="text-xs truncate mt-0.5" style="color:var(--t3)">'+c.bio+'</p></div></div>'});
+    }else{
+        h+='<div class="p-3"><button onclick="oAC()" class="w-full py-2.5 px-4 rounded-xl text-sm font-medium flex items-center justify-center gap-2 cursor-pointer" style="background:var(--ag);color:var(--ac);border:1px dashed var(--ac)"><i class="fa-solid fa-user-plus text-xs"></i>Add Contact</button></div>';
+        S.contacts.filter(function(c){return !q||c.name.toLowerCase().includes(q)||(c.phone||'').includes(q)}).forEach(function(c){
+            h+='<div class="ci" onclick="oC(\'contact\',\''+c.id+'\')"><div class="relative"><img class="av" src="'+ga(c.avatar)+'">'+(S.online[c.id]?'<div class="od"></div>':'')+'</div><div class="flex-1 min-w-0"><div class="flex items-center gap-2"><span class="text-sm font-semibold truncate">'+esc(c.name)+'</span>'+(c.isBiz?'<span class="bz">Biz</span>':'')+'</div><p class="text-xs truncate mt-0.5" style="color:var(--t3)">'+esc(c.phone||c.bio)+'</p></div></div>';
+        });
+        if(!S.contacts.length)h+='<div class="text-center py-8" style="color:var(--t3)"><i class="fa-solid fa-address-book text-2xl mb-3 block" style="opacity:.3"></i><p class="text-sm">No contacts yet</p><p class="text-xs mt-1">Add someone by their phone number</p></div>';
+    }
     l.innerHTML=h;
 }
+
 function cH(id,tp,nm,av,on,bz,lm,ur,ia,ge,obj,sub){
     var p='',ts='';if(lm){if(lm.type==='text'){var s=tp==='group'&&lm.from!==U.id?gCN(lm.from)+': ':'';p=(lm.from===U.id?'You: ':s)+lm.text}else if(lm.type==='image')p=(lm.from===U.id?'You: ':'')+'📷 Photo';else p=(lm.from===U.id?'You: ':'')+'🎥 Video';p=p.substring(0,45)+(p.length>45?'...':'');ts=fT(lm.time)}
     var a=av?'<div class="relative"><img class="av" src="'+av+'">'+(on?'<div class="od"></div>':'')+'</div>':'<div class="ga">'+(ge||'👥')+'</div>';
-    return'<div class="ci'+(ia?' on':'')+'" onclick="oC(\''+tp+'\',\''+id+'\')">'+a+'<div class="flex-1 min-w-0"><div class="flex items-center gap-2"><span class="text-sm font-semibold truncate">'+nm+'</span>'+(bz?'<span class="bz">Biz</span>':'')+'</div><div class="flex items-center justify-between mt-0.5"><p class="text-xs truncate" style="color:var(--t3)">'+(p||sub||(obj&&obj.online?'Online':'Offline'))+'</p>'+(ts?'<span class="text-xs flex-shrink-0 ml-2" style="color:var(--t3)">'+ts+'</span>':'')+'</div></div>'+(ur>0?'<div class="ub">'+ur+'</div>':'')+'</div>';
+    return'<div class="ci'+(ia?' on':'')+'" onclick="oC(\''+tp+'\',\''+id+'\')">'+a+'<div class="flex-1 min-w-0"><div class="flex items-center gap-2"><span class="text-sm font-semibold truncate">'+esc(nm)+'</span>'+(bz?'<span class="bz">Biz</span>':'')+'</div><div class="flex items-center justify-between mt-0.5"><p class="text-xs truncate" style="color:var(--t3)">'+(p?esc(p):sub||(obj&&on?'Online':'Offline'))+'</p>'+(ts?'<span class="text-xs flex-shrink-0 ml-2" style="color:var(--t3)">'+ts+'</span>':'')+'</div></div>'+(ur>0?'<div class="ub">'+ur+'</div>':'')+'</div>';
 }
+
 function gci(c){return U.id+'_'+c}
 function gCN(id){var c=S.contacts.find(function(x){return x.id===id});return c?c.name:'Unknown'}
 function gCN2(cid){var c=S.contacts.find(function(x){return gci(x.id)===cid});return c?c.name:'Unknown'}
 
+/* ===== ADD CONTACT ===== */
+function oAC(){
+    document.getElementById('acPh').value='';document.getElementById('acRes').innerHTML='';
+    document.getElementById('acMyPh').textContent=fmtPh(U.phone);
+    oMo('acM');
+    setTimeout(function(){document.getElementById('acPh').focus()},200);
+}
+
+async function findUser(){
+    var ph=document.getElementById('acPh').value.trim();
+    var res=document.getElementById('acRes');var btn=document.getElementById('acBtn');
+    if(!ph||!validPh(ph)){tst('Enter a valid phone number','w');return}
+    var cleaned=cleanPh(ph);
+    if(cleaned===cleanPh(U.phone)){res.innerHTML='<div class="nf"><i class="fa-solid fa-face-grin-beam-sweat"></i>That\'s your own number!</div>';return}
+
+    btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin mr-2"></i>Searching...';
+    res.innerHTML='';
+
+    if(S.offline){
+        await new Promise(function(r){setTimeout(r,800)});
+        var found=FALLBACK_CONTACTS.find(function(c){return cleanPh(c.phone)===cleaned});
+        btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-magnifying-glass mr-2"></i>Search';
+        if(found){
+            var already=S.contacts.some(function(c){return c.id===found.id});
+            if(already){res.innerHTML='<div class="nf"><i class="fa-solid fa-user-check"></i>'+esc(found.name)+' is already in your contacts</div>'}
+            else{res.innerHTML=buildFoundUI(found)}
+        }else{res.innerHTML='<div class="nf"><i class="fa-solid fa-user-slash"></i>No user found with that number</div>'}
+        return;
+    }
+
+    try{
+        var d=await ap({action:'findUser',phone:cleaned,userId:U.id});
+        btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-magnifying-glass mr-2"></i>Search';
+        if(d.error||!d.user){res.innerHTML='<div class="nf"><i class="fa-solid fa-user-slash"></i>No user found with that number</div>';return}
+        var u=d.user;var already=S.contacts.some(function(c){return c.id===u.id});
+        if(already){res.innerHTML='<div class="nf"><i class="fa-solid fa-user-check"></i>'+esc(u.name)+' is already in your contacts</div>'}
+        else{res.innerHTML=buildFoundUI(u)}
+    }catch(e){
+        btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-magnifying-glass mr-2"></i>Search';
+        res.innerHTML='<div class="nf"><i class="fa-solid fa-triangle-exclamation" style="color:var(--co)"></i>Search failed. Check connection.</div>';
+    }
+}
+
+function buildFoundUI(u){
+    return '<div class="fu"><img src="'+ga(u.avatar||'nexus1',80)+'"><div class="flex-1 min-w-0"><p class="text-sm font-semibold truncate">'+esc(u.name)+'</p><p class="text-xs" style="color:var(--t3)">'+esc(u.phone||'')+'</p>'+(u.bio?'<p class="text-xs mt-0.5" style="color:var(--t3)">'+esc(u.bio)+'</p>':'')+(u.isBiz?'<span class="bz mt-1 inline-block">Biz</span>':'')+'</div><button class="bp" style="width:auto;padding:10px 20px;font-size:13px" onclick="addContact(\''+u.id+'\')"><i class="fa-solid fa-user-plus mr-1"></i>Add</button></div>';
+}
+
+async function addContact(cid){
+    if(S.offline){
+        var fc=FALLBACK_CONTACTS.find(function(c){return c.id===cid});
+        if(fc&&!S.contacts.some(function(c){return c.id===cid})){S.contacts.push(fc);rL();tst(fc.name+' added to contacts!','s')}
+        cMo('acM');return;
+    }
+    try{
+        var d=await ap({action:'addContact',userId:U.id,contactId:cid});
+        if(d.error){tst(d.error,'w');return}
+        if(d.contact){if(!S.contacts.some(function(c){return c.id===d.contact.id})){S.contacts.push(d.contact)}rL();tst(d.contact.name+' added to contacts!','s')}
+        cMo('acM');
+    }catch(e){tst('Failed to add contact','w')}
+}
+
+function copyPh(){
+    var ph=fmtPh(U.phone);
+    if(navigator.clipboard){navigator.clipboard.writeText(ph).then(function(){tst('Phone number copied!','s')}).catch(function(){tst('Copy failed','w')})}
+    else{tst(ph,'i')}
+}
+
 /* ===== CHAT ===== */
-function oC(tp,id){var ci=tp==='contact'?gci(id):id;S.chats={id:ci,type:tp};S.ipOn=false;document.getElementById('iP').classList.remove('on');var ms=S.msgs[ci]||[];ms.forEach(function(m){if(m.from!==U.id)m.read=true});ap({action:'markRead',userId:U.id,chatId:ci,chatType:tp}).catch(function(){});var nm,sb;if(tp==='contact'){var c=S.contacts.find(function(x){return x.id===id});nm=c.name;sb=c.online?'Online':'Offline';document.getElementById('cO').style.display=c.online?'block':'none';document.getElementById('cA').style.display='block';document.getElementById('cA').src=ga(c.avatar,80);document.getElementById('cB').style.display='flex'}else{var g=S.groups.find(function(x){return x.id===id});nm=g.name;sb=g.members.length+1+' members';document.getElementById('cO').style.display='none';document.getElementById('cA').style.display='none';document.getElementById('cB').style.display='none'}document.getElementById('cN').textContent=nm;document.getElementById('cSb').textContent=sb;document.getElementById('eS').style.display='none';document.getElementById('aC').style.display='flex';rM();rL();if(window.innerWidth<=768)document.getElementById('side').classList.add('hm')}
+function oC(tp,id){
+    var ci=tp==='contact'?gci(id):id;S.chats={id:ci,type:tp};S.ipOn=false;document.getElementById('iP').classList.remove('on');
+    var ms=S.msgs[ci]||[];ms.forEach(function(m){if(m.from!==U.id)m.read=true});
+    if(!S.offline){ap({action:'markRead',userId:U.id,chatId:ci,chatType:tp}).catch(function(){})}
+    var nm,sb;
+    if(tp==='contact'){var c=S.contacts.find(function(x){return x.id===id});if(!c)return;nm=c.name;sb=c.online?'Online':'Offline';document.getElementById('cO').style.display=c.online?'block':'none';document.getElementById('cA').style.display='block';document.getElementById('cA').src=ga(c.avatar,80);document.getElementById('cB').style.display='flex'}
+    else{var g=S.groups.find(function(x){return x.id===id});if(!g)return;nm=g.name;sb=g.members.length+1+' members';document.getElementById('cO').style.display='none';document.getElementById('cA').style.display='none';document.getElementById('cB').style.display='none'}
+    document.getElementById('cN').textContent=nm;document.getElementById('cSb').textContent=sb;document.getElementById('eS').style.display='none';document.getElementById('aC').style.display='flex';rM();rL();
+    if(window.innerWidth<=768)document.getElementById('side').classList.add('hm');
+}
 function cC(){S.chats=null;document.getElementById('aC').style.display='none';document.getElementById('eS').style.display='flex';document.getElementById('iP').classList.remove('on');document.getElementById('side').classList.remove('hm');rL()}
 
 function rM(){
     var a=document.getElementById('mA');if(!S.chats)return;var ms=S.msgs[S.chats.id]||[];
     if(!ms.length){a.innerHTML='<div class="text-center py-8" style="color:var(--t3)"><p class="text-sm">No messages yet. Say hello!</p></div>';return}
-    var h='',ld='';ms.forEach(function(m){var ds=new Date(m.time).toLocaleDateString();if(ds!==ld){ld=ds;h+='<div class="dv"><span>'+(ds===new Date().toLocaleDateString()?'Today':ds)+'</span></div>'}var o=m.from===U.id;var sn=!o&&S.chats.type==='group'?gCN(m.from):null;h+='<div class="mr '+(o?'o':'i')+'">';if(sn)h+='<div class="mb" style="padding-bottom:4px"><div class="mn">'+esc(sn)+'</div></div></div><div class="mr i">';h+='<div class="mb">';if(m.type==='image'&&m.mediaUrl)h+='<div class="mv"><img src="'+m.mediaUrl+'" onclick="vM(\''+m.mediaUrl+'\',\'image\')" loading="lazy"></div>';else if(m.type==='video'&&m.mediaUrl)h+='<div class="mv"><video src="'+m.mediaUrl+'" controls preload="metadata"></video></div>';if(m.text)h+='<div>'+esc(m.text)+'</div>';h+='<div class="mx">'+fT(m.time)+(o?' <i class="fa-solid fa-check-double" style="font-size:10px;margin-left:3px"></i>':'')+'</div></div></div>'});a.innerHTML=h;a.scrollTop=a.scrollHeight;
+    var h='',ld='';ms.forEach(function(m){var ds=new Date(m.time).toLocaleDateString();if(ds!==ld){ld=ds;h+='<div class="dv"><span>'+(ds===new Date().toLocaleDateString()?'Today':ds)+'</span></div>'}var o=m.from===U.id;var sn=!o&&S.chats.type==='group'?gCN(m.from):null;if(sn)h+='<div class="mr i"><div class="mnn">'+esc(sn)+'</div></div>';h+='<div class="mr '+(o?'o':'i')+'"><div class="mb">';if(m.type==='image'&&m.mediaUrl)h+='<div class="mv"><img src="'+m.mediaUrl+'" onclick="vM(\''+m.mediaUrl+'\',\'image\')" loading="lazy"></div>';else if(m.type==='video'&&m.mediaUrl)h+='<div class="mv"><video src="'+m.mediaUrl+'" controls preload="metadata"></video></div>';if(m.text)h+='<div>'+esc(m.text)+'</div>';h+='<div class="mx">'+fT(m.time)+(o?' <i class="fa-solid fa-check-double" style="font-size:10px;margin-left:3px"></i>':'')+'</div></div></div>'});a.innerHTML=h;a.scrollTop=a.scrollHeight;
 }
 
 async function sM(){
     var inp=document.getElementById('mI2');var txt=inp.value.trim();if(!txt&&!S.pm)return;if(!S.chats)return;
     var m={id:'m_'+Date.now(),chatId:S.chats.id,chatType:S.chats.type,from:U.id,text:txt,type:S.pm?S.pm.type:'text',mediaUrl:S.pm?S.pm.url:null,time:Date.now(),readBy:[]};
     S.pm=null;inp.value='';inp.style.height='auto';if(!S.msgs[m.chatId])S.msgs[m.chatId]=[];S.msgs[m.chatId].push(m);rM();rL();
-    try{await ap({action:'sendMessage',message:m})}catch(e){}if(S.chats.type==='contact')sR(S.chats.id);
+    if(!S.offline){try{await ap({action:'sendMessage',message:m})}catch(e){}}
+    if(S.chats.type==='contact')sR(S.chats.id);
 }
-function sR(ci){var cid=ci.replace(U.id+'_','');var c=S.contacts.find(function(x){return x.id===cid});if(!c)return;var a=document.getElementById('mA');var t=document.createElement('div');t.className='mr i';t.id='tI';t.innerHTML='<div class="mb"><div class="tp"><span></span><span></span><span></span></div></div>';a.appendChild(t);a.scrollTop=a.scrollHeight;setTimeout(async function(){var ind=document.getElementById('tI');if(ind)ind.remove();var rm={id:'m_'+Date.now(),chatId:ci,chatType:'contact',from:cid,text:RP[Math.floor(Math.random()*RP.length)],type:'text',time:Date.now(),readBy:[]};if(!S.msgs[ci])S.msgs[ci]=[];S.msgs[ci].push(rm);try{await ap({action:'sendMessage',message:rm})}catch(e){}if(S.chats&&S.chats.id===ci)rM();else tst(c.name+': '+rm.text.substring(0,40),'m');rL()},1500+Math.random()*2500)}
+
+function sR(ci){
+    var cid=ci.replace(U.id+'_','');var c=S.contacts.find(function(x){return x.id===cid});if(!c)return;
+    var a=document.getElementById('mA');var t=document.createElement('div');t.className='mr i';t.id='tI';t.innerHTML='<div class="mb"><div class="tp"><span></span><span></span><span></span></div></div>';a.appendChild(t);a.scrollTop=a.scrollHeight;
+    setTimeout(async function(){var ind=document.getElementById('tI');if(ind)ind.remove();var rm={id:'m_'+Date.now(),chatId:ci,chatType:'contact',from:cid,text:RP[Math.floor(Math.random()*RP.length)],type:'text',time:Date.now(),readBy:[]};if(!S.msgs[ci])S.msgs[ci]=[];S.msgs[ci].push(rm);if(!S.offline){try{await ap({action:'sendMessage',message:rm})}catch(e){}}if(S.chats&&S.chats.id===ci)rM();else tst(c.name+': '+rm.text.substring(0,40),'m');rL()},1500+Math.random()*2500);
+}
+
 function hK(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sM()}}
 function aR(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,120)+'px'}
 
 /* ===== MEDIA ===== */
-async function hM(ev){var f=ev.target.files[0];if(!f)return;var u=URL.createObjectURL(f);var tp=f.type.startsWith('image')?'image':'video';tst('Uploading...','i');try{var b=await f2b(f);var d=await ap({action:'uploadMedia',base64:b,mimeType:f.type,fileName:f.name});if(d.success){S.pm={url:d.url,type:tp};document.getElementById('mI2').value=tp==='image'?'📷 Photo attached':'🎥 Video attached';tst('Attached!','s');ev.target.value='';return}}catch(e){}S.pm={url:u,type:tp};document.getElementById('mI2').value=tp==='image'?'📷 Photo attached':'🎥 Video attached';tst('Attached (local)','s');ev.target.value=''}
+async function hM(ev){var f=ev.target.files[0];if(!f)return;var u=URL.createObjectURL(f);var tp=f.type.startsWith('image')?'image':'video';tst('Uploading...','i');try{var b=await f2b(f);var d=await ap({action:'uploadMedia',base64:b,mimeType:f.type,fileName:f.name});if(d.success){S.pm={url:d.url,type:tp};document.getElementById('mI2').value=tp==='image'?'📷 Photo attached':'🎥 Video attached';tst('Attached!','s');ev.target.value='';return}}catch(e){}S.pm={url:u,type:tp};document.getElementById('mI2').value=tp==='image'?'📷 Photo attached':'🎥 Video attached';tst('Attached (local preview)','s');ev.target.value=''}
 function f2b(f){return new Promise(function(r,j){var rd=new FileReader();rd.onload=function(){r(rd.result)};rd.onerror=j;rd.readAsDataURL(f)})}
 function vM(u,t){var v=document.getElementById('mV'),c=document.getElementById('mVc');c.innerHTML=t==='image'?'<img src="'+u+'" style="max-width:90vw;max-height:85vh;border-radius:12px">':'<video src="'+u+'" controls autoplay style="max-width:90vw;max-height:85vh;border-radius:12px"></video>';v.classList.add('on')}
 function cMV(){document.getElementById('mV').classList.remove('on');var v=document.getElementById('mVc').querySelector('video');if(v)v.pause()}
-
-/* ===== EMOJI ===== */
 function tE(){document.getElementById('eP').classList.toggle('on')}
 document.addEventListener('click',function(e){if(!e.target.closest('.ep')&&!e.target.closest('[title="Emoji"]'))document.getElementById('eP').classList.remove('on')});
 
 /* ===== GROUPS ===== */
-function oGM(){document.getElementById('gMe').innerHTML=S.contacts.map(function(c){return '<div class="flex items-center gap-3 py-2 px-1 cursor-pointer" onclick="this.querySelector(\'.ck\').classList.toggle(\'on\')"><div class="ck" data-id="'+c.id+'"></div><img class="av as" src="'+ga(c.avatar,60)+'"><div class="flex-1"><span class="text-sm font-medium">'+c.name+'</span>'+(c.isBiz?'<span class="bz ml-2">Biz</span>':'')+'</div></div>'}).join('');document.getElementById('gNm').value='';document.getElementById('gDc').value='';oMo('gM')}
-async function cG(){var nm=document.getElementById('gNm').value.trim();if(!nm){tst('Enter a name','w');return}var mems=Array.from(document.querySelectorAll('#gMe .ck.on')).map(function(e){return e.dataset.id});if(!mems.length){tst('Add members','w');return}var ez=['💬','🎯','🚀','💡','🏆','🌟','💎','🔥','⚡','🌍'];var g={id:'g_'+Date.now(),name:nm,desc:document.getElementById('gDc').value.trim(),members:mems,avatar:ez[Math.floor(Math.random()*ez.length)],createdBy:U.id,created:Date.now()};S.groups.push(g);var m0={id:'m_'+Date.now(),chatId:g.id,chatType:'group',from:U.id,text:'Group created: '+nm,type:'text',time:Date.now(),readBy:[]};S.msgs[g.id]=[m0];try{await ap({action:'createGroup',group:g});await ap({action:'sendMessage',message:m0})}catch(e){}cMo('gM');sT('groups');tst('Group "'+nm+'" created!','s')}
+function oGM(){document.getElementById('gMe').innerHTML=S.contacts.map(function(c){return'<div class="flex items-center gap-3 py-2 px-1 cursor-pointer" onclick="this.querySelector(\'.ck\').classList.toggle(\'on\')"><div class="ck" data-id="'+c.id+'"></div><img class="av as" src="'+ga(c.avatar,60)+'"><div class="flex-1"><span class="text-sm font-medium">'+esc(c.name)+'</span>'+(c.isBiz?'<span class="bz ml-2">Biz</span>':'')+'</div></div>'}).join('');document.getElementById('gNm').value='';document.getElementById('gDc').value='';oMo('gM')}
+
+async function cG(){
+    var nm=document.getElementById('gNm').value.trim();if(!nm){tst('Enter a name','w');return}
+    var mems=Array.from(document.querySelectorAll('#gMe .ck.on')).map(function(e){return e.dataset.id});if(!mems.length){tst('Add at least one member','w');return}
+    var ez=['💬','🎯','🚀','💡','🏆','🌟','💎','🔥','⚡','🌍'];
+    var g={id:'g_'+Date.now(),name:nm,desc:document.getElementById('gDc').value.trim(),members:mems,avatar:ez[Math.floor(Math.random()*ez.length)],createdBy:U.id,created:Date.now()};
+    S.groups.push(g);var m0={id:'m_'+Date.now(),chatId:g.id,chatType:'group',from:U.id,text:'Group created: '+nm,type:'text',time:Date.now(),readBy:[]};
+    S.msgs[g.id]=[m0];if(!S.offline){try{await ap({action:'createGroup',group:g});await ap({action:'sendMessage',message:m0})}catch(e){}}
+    cMo('gM');sT('groups');tst('Group "'+nm+'" created!','s');
+}
 
 /* ===== PROFILE ===== */
-function oPM(){document.getElementById('pAv').src=ga(U.avatar,160);document.getElementById('pNm').value=U.name;document.getElementById('pBi').value=U.bio||'';var bt=document.getElementById('pBz'),bf=document.getElementById('pBF');if(U.isBiz){bt.classList.add('on');bf.style.display='block'}else{bt.classList.remove('on');bf.style.display='none'}document.getElementById('pCo').value=U.company||'';document.getElementById('pRo').value=U.role||'';oMo('pM')}
-async function sP(){var nm=document.getElementById('pNm').value.trim();if(!nm){tst('Name required','w');return}U.name=nm;U.bio=document.getElementById('pBi').value.trim()||'Available';U.isBiz=document.getElementById('pBz').classList.contains('on');U.company=document.getElementById('pCo').value.trim();U.role=document.getElementById('pRo').value.trim();document.getElementById('uN').textContent=U.name;uCo(true);try{await ap({action:'updateProfile',user:U})}catch(e){}cMo('pM');tst('Saved!','s')}
+function oPM(){document.getElementById('pAv').src=ga(U.avatar,160);document.getElementById('pNm').value=U.name;document.getElementById('pPh').value=U.phone||'';document.getElementById('pBi').value=U.bio||'';var bt=document.getElementById('pBz'),bf=document.getElementById('pBF');if(U.isBiz){bt.classList.add('on');bf.style.display='block'}else{bt.classList.remove('on');bf.style.display='none'}document.getElementById('pCo').value=U.company||'';document.getElementById('pRo').value=U.role||'';oMo('pM')}
+
+async function sP(){
+    var nm=document.getElementById('pNm').value.trim();if(!nm){tst('Name required','w');return}
+    var ph=document.getElementById('pPh').value.trim();
+    if(ph&&!validPh(ph)){tst('Enter a valid phone number','w');return}
+    U.name=nm;U.phone=ph||U.phone;U.bio=document.getElementById('pBi').value.trim()||'Available';U.isBiz=document.getElementById('pBz').classList.contains('on');U.company=document.getElementById('pCo').value.trim();U.role=document.getElementById('pRo').value.trim();
+    saveProfile();document.getElementById('uN').textContent=U.name;document.getElementById('acMyPh').textContent=fmtPh(U.phone);uCo(true);
+    if(!S.offline){try{await ap({action:'updateProfile',user:U})}catch(e){}}
+    cMo('pM');tst('Saved!','s');
+}
 
 /* ===== INFO PANEL ===== */
 function tIP(){S.ipOn=!S.ipOn;document.getElementById('iP').classList.toggle('on',S.ipOn);if(S.ipOn&&S.chats)fIP()}
-function fIP(){if(!S.chats)return;var h=document.getElementById('iH'),d=document.getElementById('iD'),m=document.getElementById('iM');if(S.chats.type==='contact'){var cid=S.chats.id.replace(U.id+'_','');var c=S.contacts.find(function(x){return x.id===cid});if(!c)return;h.innerHTML='<img class="av al mx-auto mb-3" src="'+ga(c.avatar,160)+'"><h3 class="font-semibold text-base">'+c.name+'</h3><p class="text-xs mt-1" style="color:var(--t3)">'+c.bio+'</p>'+(c.isBiz?'<div class="mt-2"><span class="bz">'+c.company+'</span><span class="text-xs ml-2" style="color:var(--t3)">'+c.role+'</span></div>':'');var ms=S.msgs[S.chats.id]||[];var mm=ms.filter(function(x){return x.type==='image'||x.type==='video'});d.innerHTML='<div class="space-y-3"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:var(--ag);color:var(--ac)"><i class="fa-solid fa-circle text-xs"></i></div><p class="text-sm font-medium">'+(c.online?'Online':'Offline')+'</p></div><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:var(--bt);color:var(--t2)"><i class="fa-solid fa-message text-xs"></i></div><p class="text-sm font-medium">'+ms.length+' messages</p></div><button class="bs w-full mt-2 text-center" onclick="oMo(\'dM\')"><i class="fa-solid fa-stethoscope mr-1"></i>Test Call Quality</button></div>';m.innerHTML=mm.length?mm.map(function(x){return x.type==='image'&&x.mediaUrl?'<div class="mgi" onclick="vM(\''+x.mediaUrl+'\',\'image\')"><img src="'+x.mediaUrl+'" loading="lazy"></div>':''}).join(''):'<p class="text-xs col-span-3 text-center py-4" style="color:var(--t3)">No shared media</p>'}else{var g=S.groups.find(function(x){return x.id===S.chats.id});if(!g)return;h.innerHTML='<div class="ga mx-auto mb-3" style="width:80px;height:80px;font-size:32px;border-radius:50%">'+g.avatar+'</div><h3 class="font-semibold text-base">'+g.name+'</h3><p class="text-xs mt-1" style="color:var(--t3)">'+(g.desc||'No description')+'</p>';var mh='<p class="text-xs font-semibold mb-3" style="color:var(--t3)">Members ('+(g.members.length+1)+')</p><div class="space-y-2 mb-4"><div class="flex items-center gap-3"><img class="av as" src="'+ga(U.avatar,60)+'"><p class="text-sm font-medium">You</p></div>';g.members.forEach(function(mid){var mc=S.contacts.find(function(x){return x.id===mid});if(mc)mh+='<div class="flex items-center gap-3"><img class="av as" src="'+ga(mc.avatar,60)+'"><p class="text-sm font-medium flex-1">'+mc.name+'</p>'+(mc.isBiz?'<span class="bz">Biz</span>':'')+'</div>'});mh+='</div><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:var(--bt);color:var(--t2)"><i class="fa-solid fa-message text-xs"></i></div><p class="text-sm font-medium">'+(S.msgs[g.id]||[]).length+' messages</p></div>';d.innerHTML=mh;m.innerHTML='<p class="text-xs col-span-3 text-center py-4" style="color:var(--t3)">No shared media</p>'}}
+
+function fIP(){
+    if(!S.chats)return;var h=document.getElementById('iH'),d=document.getElementById('iD'),m=document.getElementById('iM');
+    if(S.chats.type==='contact'){
+        var cid=S.chats.id.replace(U.id+'_','');var c=S.contacts.find(function(x){return x.id===cid});if(!c)return;
+        h.innerHTML='<img class="av al mx-auto mb-3" src="'+ga(c.avatar,160)+'"><h3 class="font-semibold text-base">'+esc(c.name)+'</h3><p class="text-xs mt-1" style="color:var(--t3)">'+esc(c.bio)+'</p>'+(c.isBiz?'<div class="mt-2"><span class="bz">'+esc(c.company)+'</span><span class="text-xs ml-2" style="color:var(--t3)">'+esc(c.role)+'</span></div>':'');
+        var infoHtml='<div class="space-y-3">';
+        if(c.phone)infoHtml+='<div class="ph-row" onclick="copyContactPh(\''+esc(c.phone)+'\')"><i class="fa-solid fa-phone"></i><span>'+esc(c.phone)+'</span><i class="fa-regular fa-copy copy-i"></i></div>';
+        infoHtml+='<div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:var(--ag);color:var(--ac)"><i class="fa-solid fa-circle text-xs"></i></div><p class="text-sm font-medium">'+(S.online[c.id]?'Online':'Offline')+'</p></div>';
+        infoHtml+='<div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:var(--bt);color:var(--t2)"><i class="fa-solid fa-message text-xs"></i></div><p class="text-sm font-medium">'+(S.msgs[S.chats.id]||[]).length+' messages</p></div>';
+        infoHtml+='<button class="bs w-full text-center" onclick="oMo(\'dM\')"><i class="fa-solid fa-stethoscope mr-1"></i>Test Call Quality</button></div>';
+        d.innerHTML=infoHtml;
+        var ms=S.msgs[S.chats.id]||[];var mm=ms.filter(function(x){return x.type==='image'||x.type==='video'});
+        m.innerHTML=mm.length?mm.filter(function(x){return x.mediaUrl}).map(function(x){return'<div class="mgi" onclick="vM(\''+x.mediaUrl+'\',\''+x.type+'\')"><img src="'+x.mediaUrl+'" loading="lazy"></div>'}).join(''):'<p class="text-xs col-span-3 text-center py-4" style="color:var(--t3)">No shared media</p>';
+    }else{
+        var g=S.groups.find(function(x){return x.id===S.chats.id});if(!g)return;
+        h.innerHTML='<div class="ga mx-auto mb-3" style="width:80px;height:80px;font-size:32px;border-radius:50%">'+g.avatar+'</div><h3 class="font-semibold text-base">'+esc(g.name)+'</h3><p class="text-xs mt-1" style="color:var(--t3)">'+esc(g.desc||'No description')+'</p>';
+        var mh='<p class="text-xs font-semibold mb-3" style="color:var(--t3)">Members ('+(g.members.length+1)+')</p><div class="space-y-2 mb-4"><div class="flex items-center gap-3"><img class="av as" src="'+ga(U.avatar,60)+'"><div class="flex-1"><p class="text-sm font-medium">You</p>'+(U.phone?'<p class="text-xs" style="color:var(--t3)">'+esc(U.phone)+'</p>':'')+'</div></div>';
+        g.members.forEach(function(mid){var mc=S.contacts.find(function(x){return x.id===mid});if(mc)mh+='<div class="flex items-center gap-3"><img class="av as" src="'+ga(mc.avatar,60)+'"><div class="flex-1"><p class="text-sm font-medium">'+esc(mc.name)+(mc.isBiz?' <span class="bz">Biz</span>':'')+'</p>'+(mc.phone?'<p class="text-xs" style="color:var(--t3)">'+esc(mc.phone)+'</p>':'')+'</div></div>'});
+        mh+='</div><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:var(--bt);color:var(--t2)"><i class="fa-solid fa-message text-xs"></i></div><p class="text-sm font-medium">'+(S.msgs[g.id]||[]).length+' messages</p></div>';
+        d.innerHTML=mh;m.innerHTML='<p class="text-xs col-span-3 text-center py-4" style="color:var(--t3)">No shared media</p>';
+    }
+}
+
+function copyContactPh(ph){if(navigator.clipboard){navigator.clipboard.writeText(ph).then(function(){tst('Copied!','s')}).catch(function(){})}else{tst(ph,'i')}}
 
 /* ===== VIDEO CALLS ===== */
-async function startC(){if(!S.chats||S.chats.type!=='contact')return;var cid=S.chats.id.replace(U.id+'_','');var c=S.contacts.find(function(x){return x.id===cid});if(!c)return;try{C.ls=await navigator.mediaDevices.getUserMedia({video:{width:{ideal:1280},height:{ideal:720},facingMode:'user'},audio:{echoCancellation:true,noiseSuppression:true}})}catch(e){tst('Camera/mic access denied','w');return}C.on=true;C.cid=S.chats.id;C.ct='contact';C.tid=cid;C.mic=true;C.cam=true;document.getElementById('lv').srcObject=C.ls;document.getElementById('cAv').src=ga(c.avatar,160);document.getElementById('cNm').textContent=c.name;document.getElementById('cTN').textContent=c.name;document.getElementById('cSt').textContent='Calling...';document.getElementById('cTi').textContent='Connecting...';document.getElementById('cW').style.display='flex';rCQ();document.getElementById('miB').className='cc';document.getElementById('caB').className='cc';document.getElementById('miB').innerHTML='<i class="fa-solid fa-microphone"></i>';document.getElementById('caB').innerHTML='<i class="fa-solid fa-video"></i>';document.getElementById('co').classList.add('on');C.pc=new RTCPeerConnection(RC);C.ls.getTracks().forEach(function(t){C.pc.addTrack(t,C.ls)});C.pc.oniceconnectionstatechange=function(){var st=C.pc.iceConnectionState;console.log('[WebRTC]',st);if(st==='connected'||st==='completed'){document.getElementById('cW').style.display='none';sCT();sQM()}if(st==='failed'){tst('Connection failed','w');uCQ(0)}if(st==='disconnected')uCQ(1)};C.pc.ontrack=function(e){document.getElementById('rv').srcObject=e.streams[0];document.getElementById('cW').style.display='none';sCT();sQM()};try{var of=await C.pc.createOffer({offerToReceiveAudio:true,offerToReceiveVideo:true});await C.pc.setLocalDescription(of);document.getElementById('cSt').textContent='Gathering routes...';await wI(C.pc);document.getElementById('cSt').textContent='Sending...';var d=await ap({action:'initiateCall',fromId:U.id,toId:cid,chatId:C.cid,chatType:'contact',signalData:JSON.stringify(C.pc.localDescription)});if(d.success)C.sid=d.signalId;else tst('Failed','w')}catch(e){tst('Call failed','w');eC()}}function wI(pc){return new Promise(function(r){if(pc.iceGatheringState==='complete')return r();var done=false;var h=function(){if(pc.iceGatheringState==='complete'&&!done){done=true;pc.removeEventListener('icegatheringstatechange',h);clearTimeout(t);r()}};pc.addEventListener('icegatheringstatechange',h);var t=setTimeout(function(){if(!done){done=true;pc.removeEventListener('icegatheringstatechange',h);r()}},15000)})}
+async function startC(){
+    if(!S.chats||S.chats.type!=='contact')return;if(S.offline){tst('Video calls require online mode','w');return}
+    var cid=S.chats.id.replace(U.id+'_','');var c=S.contacts.find(function(x){return x.id===cid});if(!c)return;
+    try{C.ls=await navigator.mediaDevices.getUserMedia({video:{width:{ideal:1280},height:{ideal:720},facingMode:'user'},audio:{echoCancellation:true,noiseSuppression:true}})}catch(e){tst('Camera/mic access denied','w');return}
+    C.on=true;C.cid=S.chats.id;C.ct='contact';C.tid=cid;C.mic=true;C.cam=true;
+    document.getElementById('lv').srcObject=C.ls;document.getElementById('cAv').src=ga(c.avatar,160);document.getElementById('cNm').textContent=c.name;document.getElementById('cTN').textContent=c.name;document.getElementById('cSt').textContent='Calling...';document.getElementById('cTi').textContent='Connecting...';
+    document.getElementById('cW').style.display='flex';rCQ();
+    document.getElementById('miB').className='cc';document.getElementById('caB').className='cc';document.getElementById('miB').innerHTML='<i class="fa-solid fa-microphone"></i>';document.getElementById('caB').innerHTML='<i class="fa-solid fa-video"></i>';
+    document.getElementById('co').classList.add('on');C.pc=new RTCPeerConnection(RC);
+    C.ls.getTracks().forEach(function(t){C.pc.addTrack(t,C.ls)});
+    C.pc.oniceconnectionstatechange=function(){var st=C.pc.iceConnectionState;console.log('[WebRTC]',st);if(st==='connected'||st==='completed'){document.getElementById('cW').style.display='none';sCT();sQM()}if(st==='failed'){tst('Connection failed','w');uCQ(0)}if(st==='disconnected')uCQ(1)};
+    C.pc.ontrack=function(e){document.getElementById('rv').srcObject=e.streams[0];document.getElementById('cW').style.display='none';sCT();sQM()};
+    try{var of=await C.pc.createOffer({offerToReceiveAudio:true,offerToReceiveVideo:true});await C.pc.setLocalDescription(of);document.getElementById('cSt').textContent='Gathering routes...';await wI(C.pc);document.getElementById('cSt').textContent='Sending...';var d=await ap({action:'initiateCall',fromId:U.id,toId:cid,chatId:C.cid,chatType:'contact',signalData:JSON.stringify(C.pc.localDescription)});if(d.success)C.sid=d.signalId;else tst('Failed','w')}catch(e){tst('Call failed: '+e.message,'w');eC()}
+}
+function wI(pc){return new Promise(function(r){if(pc.iceGatheringState==='complete')return r();var done=false;var h=function(){if(pc.iceGatheringState==='complete'&&!done){done=true;pc.removeEventListener('icegatheringstatechange',h);clearTimeout(t);r()}};pc.addEventListener('icegatheringstatechange',h);var t=setTimeout(function(){if(!done){done=true;pc.removeEventListener('icegatheringstatechange',h);r()}},15000)})}
 
 function showIC(sig){if(C.on)return;var c=S.contacts.find(function(x){return x.id===sig.fromId});if(!c)return;C.oid=sig.id;C.cid=sig.chatId;C.ct=sig.chatType;C.tid=sig.fromId;document.getElementById('iNm').textContent=c.name;document.getElementById('ic').classList.add('on');try{var ctx=new AudioContext();[[440,0],[523,.2],[659,.4]].forEach(function(f){var o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.frequency.value=f[0];g.gain.value=.06;o.start(ctx.currentTime+f[1]);o.stop(ctx.currentTime+f[1]+.12)})}catch(e){}C.ito=setTimeout(function(){if(document.getElementById('ic').classList.contains('on'))rC()},30000)}
 
-async function aCC(){clearTimeout(C.ito);document.getElementById('ic').classList.remove('on');var c=S.contacts.find(function(x){return x.id===C.tid});if(!c)return;try{C.ls=await navigator.mediaDevices.getUserMedia({video:{width:{ideal:1280},height:{ideal:720},facingMode:'user'},audio:{echoCancellation:true,noiseSuppression:true}})}catch(e){tst('Camera/mic denied','w');return}C.on=true;C.mic=true;C.cam=true;document.getElementById('lv').srcObject=C.ls;document.getElementById('cAv').src=ga(c.avatar,160);document.getElementById('cNm').textContent=c.name;document.getElementById('cTN').textContent=c.name;document.getElementById('cSt').textContent='Connecting...';document.getElementById('cTi').textContent='Connecting...';document.getElementById('cW').style.display='flex';rCQ();document.getElementById('miB').className='cc';document.getElementById('caB').className='cc';document.getElementById('miB').innerHTML='<i class="fa-solid fa-microphone"></i>';document.getElementById('caB').innerHTML='<i class="fa-solid fa-video"></i>';document.getElementById('co').classList.add('on');var od;try{var d=await ap({action:'pollSignals',userId:U.id});var o=d.signals.find(function(s){return s.id===C.oid});if(o)od=JSON.parse(o.data)}catch(e){}if(!od){tst('Could not get offer','w');eC();return}C.pc=new RTCPeerConnection(RC);C.ls.getTracks().forEach(function(t){C.pc.addTrack(t,C.ls)});C.pc.oniceconnectionstatechange=function(){var st=C.pc.iceConnectionState;console.log('[WebRTC]',st);if(st==='connected'||st==='completed'){document.getElementById('cW').style.display='none';sCT();sQM()}if(st==='failed'){tst('Failed','w');uCQ(0)}};C.pc.ontrack=function(e){document.getElementById('rv').srcObject=e.streams[0];document.getElementById('cW').style.display='none';sCT();sQM()};try{await C.pc.setRemoteDescription(od);var an=await C.pc.createAnswer();await C.pc.setLocalDescription(an);document.getElementById('cSt').textContent='Establishing...';await wI(C.pc);var d=await ap({action:'answerCall',fromId:U.id,toId:C.tid,chatId:C.cid,chatType:C.ct,signalData:JSON.stringify(C.pc.localDescription),offerId:C.oid});if(d.success)C.sid=d.signalId}catch(e){tst('Answer failed','w');eC()}}
+async function aCC(){
+    clearTimeout(C.ito);document.getElementById('ic').classList.remove('on');var c=S.contacts.find(function(x){return x.id===C.tid});if(!c)return;
+    try{C.ls=await navigator.mediaDevices.getUserMedia({video:{width:{ideal:1280},height:{ideal:720},facingMode:'user'},audio:{echoCancellation:true,noiseSuppression:true}})}catch(e){tst('Camera/mic denied','w');return}
+    C.on=true;C.mic=true;C.cam=true;document.getElementById('lv').srcObject=C.ls;document.getElementById('cAv').src=ga(c.avatar,160);document.getElementById('cNm').textContent=c.name;document.getElementById('cTN').textContent=c.name;document.getElementById('cSt').textContent='Connecting...';document.getElementById('cTi').textContent='Connecting...';
+    document.getElementById('cW').style.display='flex';rCQ();document.getElementById('miB').className='cc';document.getElementById('caB').className='cc';document.getElementById('miB').innerHTML='<i class="fa-solid fa-microphone"></i>';document.getElementById('caB').innerHTML='<i class="fa-solid fa-video"></i>';
+    document.getElementById('co').classList.add('on');var od;
+    try{var d=await ap({action:'pollSignals',userId:U.id});var o=d.signals.find(function(s){return s.id===C.oid});if(o)od=JSON.parse(o.data)}catch(e){}
+    if(!od){tst('Could not get offer','w');eC();return}
+    C.pc=new RTCPeerConnection(RC);C.ls.getTracks().forEach(function(t){C.pc.addTrack(t,C.ls)});
+    C.pc.oniceconnectionstatechange=function(){var st=C.pc.iceConnectionState;console.log('[WebRTC]',st);if(st==='connected'||st==='completed'){document.getElementById('cW').style.display='none';sCT();sQM()}if(st==='failed'){tst('Failed','w');uCQ(0)}};
+    C.pc.ontrack=function(e){document.getElementById('rv').srcObject=e.streams[0];document.getElementById('cW').style.display='none';sCT();sQM()};
+    try{await C.pc.setRemoteDescription(od);var an=await C.pc.createAnswer();await C.pc.setLocalDescription(an);document.getElementById('cSt').textContent='Establishing...';await wI(C.pc);var d=await ap({action:'answerCall',fromId:U.id,toId:C.tid,chatId:C.cid,chatType:C.ct,signalData:JSON.stringify(C.pc.localDescription),offerId:C.oid});if(d.success)C.sid=d.signalId}catch(e){tst('Answer failed','w');eC()}
+}
 
 function rC(){clearTimeout(C.ito);document.getElementById('ic').classList.remove('on');ap({action:'endCallSignal',fromId:U.id,toId:C.tid,chatId:C.cid,chatType:C.ct}).catch(function(){});C.oid=null;C.cid=null;C.tid=null}
-
 async function hA(sig){if(!C.pc)return;try{await C.pc.setRemoteDescription(JSON.parse(sig.data))}catch(e){console.error(e)}}
 
 function eC(remote){
@@ -455,7 +712,7 @@ function eC(remote){
     if(C.pc)try{C.pc.close()}catch(e){}
     if(C.ls)C.ls.getTracks().forEach(function(t){t.stop()});
     if(!remote&&C.on&&C.tid)ap({action:'endCallSignal',fromId:U.id,toId:C.tid,chatId:C.cid,chatType:C.ct}).catch(function(){});
-    if(C.on&&C.cid){var m={id:'m_'+Date.now(),chatId:C.cid,chatType:C.ct||'contact',from:U.id,text:'📞 Video call ended',type:'text',time:Date.now(),readBy:[]};if(!S.msgs[C.cid])S.msgs[C.cid]=[];S.msgs[C.cid].push(m);ap({action:'sendMessage',message:m}).catch(function(){});rM();rL()}
+    if(C.on&&C.cid){var m={id:'m_'+Date.now(),chatId:C.cid,chatType:C.ct||'contact',from:U.id,text:'📞 Video call ended',type:'text',time:Date.now(),readBy:[]};if(!S.msgs[C.cid])S.msgs[C.cid]=[];S.msgs[C.cid].push(m);if(!S.offline)ap({action:'sendMessage',message:m}).catch(function(){});rM();rL()}
     C={on:false,pc:null,ls:null,rs:null,sid:null,oid:null,cid:null,ct:null,tid:null,ti:null,t0:null,mic:true,cam:true,to:null,ito:null,qi:null};
     document.getElementById('co').classList.remove('on');document.getElementById('lv').srcObject=null;document.getElementById('rv').srcObject=null;
     if(!remote)tst('Call ended','i');
@@ -465,29 +722,34 @@ function sCT(){if(C.ti)return;C.t0=Date.now();C.ti=setInterval(function(){var s=
 function rCQ(){document.querySelectorAll('#cQ .qb').forEach(function(b){b.classList.remove('on');b.style.background='rgba(255,255,255,.25)'});document.getElementById('cQL').textContent='Connecting...'}
 function uCQ(lv){var bars=document.querySelectorAll('#cQ .qb'),lb=['Failed','Poor','Fair','Good','Excellent'],lc=['var(--co)','var(--co)','var(--go)','var(--bl)','var(--ac)'];bars.forEach(function(b,i){b.classList.toggle('on',i<lv);b.style.background=i<lv?lc[lv]:'rgba(255,255,255,.25)'});document.getElementById('cQL').textContent=lb[lv]||'...'}
 function sQM(){if(C.qi)return;C.qi=setInterval(async function(){if(!C.pc||C.pc.iceConnectionState!=='connected'&&C.pc.iceConnectionState!=='completed')return;try{var st=await C.pc.getStats();var rt=0,lo=0;st.forEach(function(r){if(r.type==='candidate-pair'&&r.state==='succeeded')rt=r.currentRoundTripTime||0;if(r.type==='inbound-rtp'&&r.kind==='video')lo=r.packetsLost||0});var lv=4;if(rt>.5||lo>50)lv=1;else if(rt>.2||lo>10)lv=2;else if(rt>.1||lo>2)lv=3;uCQ(lv)}catch(e){}},3000)}
-
 function tMi(){if(!C.ls)return;C.mic=!C.mic;C.ls.getAudioTracks().forEach(function(t){t.enabled=C.mic});document.getElementById('miB').className='cc'+(C.mic?'':' of');document.getElementById('miB').innerHTML=C.mic?'<i class="fa-solid fa-microphone"></i>':'<i class="fa-solid fa-microphone-slash"></i>'}
 function tCa(){if(!C.ls)return;C.cam=!C.cam;C.ls.getVideoTracks().forEach(function(t){t.enabled=C.cam});document.getElementById('caB').className='cc'+(C.cam?'':' of');document.getElementById('caB').innerHTML=C.cam?'<i class="fa-solid fa-video"></i>':'<i class="fa-solid fa-video-slash"></i>';document.getElementById('lv').style.opacity=C.cam?'1':'0.3'}
 
 /* ===== DIAGNOSTICS ===== */
-async function rD(){var btn=document.getElementById('dBtn');btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin mr-2"></i>Running...';document.getElementById('dIc').textContent='Testing...';document.getElementById('dTu').style.width='10%';document.getElementById('dTu').style.background='var(--go)';document.getElementById('dTd').style.display='none';document.getElementById('dMd').style.width='10%';document.getElementById('dMd').style.background='var(--go)';document.getElementById('dSt').style.display='none';document.getElementById('dRe').style.display='none';var tok=false,det='',med='';try{var pc=new RTCPeerConnection(RC);pc.createDataChannel('t');var of=await pc.createOffer();await pc.setLocalDescription(of);await wI(pc);var fr=false,fs=false;var st=await pc.getStats();st.forEach(function(r){if(r.type==='local-candidate'){var t=r.candidateType||'?';if(t==='relay'){fr=true;det+='✅ TURN relay: '+(r.address||'?')+':'+(r.port||'?')+'\n'}else if(t==='srflx'){fs=true;det+='✅ STUN srflx: '+(r.address||'?')+':'+(r.port||'?')+'\n'}else if(t==='host'){det+='✅ Host: '+(r.address||'?')+':'+(r.port||'?')+'\n'}else det+='⚪ '+t+': '+(r.address||'?')+'\n'}});tok=fr;if(fr){document.getElementById('dTu').style.width='100%';document.getElementById('dTu').style.background='var(--ac)'}else if(fs){document.getElementById('dTu').style.width='60%';document.getElementById('dTu').style.background='var(--go)';det+='⚠️ No TURN relay found\n'}else{document.getElementById('dTu').style.width='20%';document.getElementById('dTu').style.background='var(--co)';det+='❌ No candidates\n'}document.getElementById('dIc').textContent=(fr?1:0)+(fs?1:0)+1+' types found';document.getElementById('dTd').style.display='block';document.getElementById('dTd').innerHTML='<pre style="white-space:pre-wrap;font-family:monospace;font-size:11px;line-height:1.6">'+det+'</pre>';pc.close()}catch(e){document.getElementById('dTu').style.width='0%';document.getElementById('dTu').style.background='var(--co)';document.getElementById('dIc').textContent='Error';document.getElementById('dTd').style.display='block';document.getElementById('dTd').innerHTML='<pre style="white-space:pre-wrap;font-family:monospace;font-size:11px">'+e.message+'</pre>'}try{var stream=await navigator.mediaDevices.getUserMedia({video:true,audio:true});stream.getTracks().forEach(function(t){t.stop()});med+='✅ Camera & microphone accessible\n';document.getElementById('dMd').style.width='100%';document.getElementById('dMd').style.background='var(--ac)'}catch(e){med+='❌ '+e.message+'\n';document.getElementById('dMd').style.width='0%';document.getElementById('dMd').style.background='var(--co)'}if(navigator.connection)med+='📶 '+navigator.connection.effectiveType+' — '+navigator.connection.downlink+'Mbps, RTT '+navigator.connection.rtt+'ms\n';document.getElementById('dSt').style.display='block';document.getElementById('dSt').innerHTML='<pre style="white-space:pre-wrap;font-family:monospace;font-size:11px;line-height:1.6">'+med+'</pre>';var res=document.getElementById('dRe');res.style.display='block';if(tok){res.style.background='rgba(0,212,170,.1)';res.style.color='var(--ac)';res.innerHTML='<i class="fa-solid fa-circle-check mr-2"></i><strong>Ready for calls.</strong> TURN relay working — connects even behind firewalls.'}else{res.style.background='rgba(255,107,107,.1)';res.style.color='var(--co)';res.innerHTML='<i class="fa-solid fa-triangle-exclamation mr-2"></i><strong>Limited.</strong> TURN not reachable. Calls may fail on restrictive networks.'}btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-stethoscope mr-2"></i>Run Diagnostics'}
+async function rD(){
+    var btn=document.getElementById('dBtn');btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin mr-2"></i>Running...';
+    document.getElementById('dIc').textContent='Testing...';document.getElementById('dTu').style.width='10%';document.getElementById('dTu').style.background='var(--go)';document.getElementById('dTd').style.display='none';document.getElementById('dMd').style.width='10%';document.getElementById('dMd').style.background='var(--go)';document.getElementById('dSt').style.display='none';document.getElementById('dRe').style.display='none';
+    var tok=false,det='',med='';
+    try{var pc=new RTCPeerConnection(RC);pc.createDataChannel('t');var of=await pc.createOffer();await pc.setLocalDescription(of);await wI(pc);var fr=false,fs=false;var st=await pc.getStats();st.forEach(function(r){if(r.type==='local-candidate'){var t=r.candidateType||'?';if(t==='relay'){fr=true;det+='✅ TURN relay: '+(r.address||'?')+':'+(r.port||'?')+'\n'}else if(t==='srflx'){fs=true;det+='✅ STUN srflx: '+(r.address||'?')+':'+(r.port||'?')+'\n'}else if(t==='host'){det+='✅ Host: '+(r.address||'?')+':'+(r.port||'?')+'\n'}else det+='⚪ '+t+': '+(r.address||'?')+'\n'}});tok=fr;if(fr){document.getElementById('dTu').style.width='100%';document.getElementById('dTu').style.background='var(--ac)'}else if(fs){document.getElementById('dTu').style.width='60%';document.getElementById('dTu').style.background='var(--go)';det+='⚠️ No TURN relay found\n'}else{document.getElementById('dTu').style.width='20%';document.getElementById('dTu').style.background='var(--co)';det+='❌ No candidates\n'}document.getElementById('dIc').textContent=(fr?1:0)+(fs?1:0)+1+' types found';document.getElementById('dTd').style.display='block';document.getElementById('dTd').innerHTML='<pre style="white-space:pre-wrap;font-family:monospace;font-size:11px;line-height:1.6">'+det+'</pre>';pc.close()}catch(e){document.getElementById('dTu').style.width='0%';document.getElementById('dTu').style.background='var(--co)';document.getElementById('dIc').textContent='Error';document.getElementById('dTd').style.display='block';document.getElementById('dTd').innerHTML='<pre style="white-space:pre-wrap;font-family:monospace;font-size:11px">'+esc(e.message)+'</pre>'}
+    try{var stream=await navigator.mediaDevices.getUserMedia({video:true,audio:true});stream.getTracks().forEach(function(t){t.stop()});med+='✅ Camera & microphone accessible\n';document.getElementById('dMd').style.width='100%';document.getElementById('dMd').style.background='var(--ac)'}catch(e){med+='❌ '+e.message+'\n';document.getElementById('dMd').style.width='0%';document.getElementById('dMd').style.background='var(--co)'}
+    if(navigator.connection)med+='📶 '+navigator.connection.effectiveType+' — '+navigator.connection.downlink+'Mbps, RTT '+navigator.connection.rtt+'ms\n';
+    document.getElementById('dSt').style.display='block';document.getElementById('dSt').innerHTML='<pre style="white-space:pre-wrap;font-family:monospace;font-size:11px;line-height:1.6">'+med+'</pre>';
+    var res=document.getElementById('dRe');res.style.display='block';
+    if(tok){res.style.background='rgba(0,212,170,.1)';res.style.color='var(--ac)';res.innerHTML='<i class="fa-solid fa-circle-check mr-2"></i><strong>Ready for calls.</strong> TURN relay working.'}
+    else{res.style.background='rgba(255,107,107,.1)';res.style.color='var(--co)';res.innerHTML='<i class="fa-solid fa-triangle-exclamation mr-2"></i><strong>Limited.</strong> TURN not reachable. Calls may fail on restrictive networks.'}
+    btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-stethoscope mr-2"></i>Run Diagnostics';
+}
 
 /* ===== MODALS & TOAST ===== */
 function oMo(id){document.getElementById(id).classList.add('on')}
 function cMo(id){document.getElementById(id).classList.remove('on')}
 function tst(msg,tp){var c=document.getElementById('TB'),t=document.createElement('div');t.className='tst';var ic='fa-circle-info',cl='var(--bl)';if(tp==='s'){ic='fa-circle-check';cl='var(--ac)'}if(tp==='w'){ic='fa-triangle-exclamation';cl='var(--go)'}if(tp==='m'){ic='fa-message';cl='var(--ac)'}if(tp==='i'){ic='fa-spinner fa-spin';cl='var(--bl)'}t.innerHTML='<i class="fa-solid '+ic+'" style="color:'+cl+';flex-shrink:0"></i><span>'+esc(msg)+'</span>';c.appendChild(t);setTimeout(function(){if(t.parentNode)t.remove()},tp==='i'?5000:3200)}
-
-/* ===== HELPERS ===== */
 function fT(ts){var d=new Date(ts),n=new Date(),h=String(d.getHours()).padStart(2,'0'),m=String(d.getMinutes()).padStart(2,'0');if(d.toDateString()===n.toDateString())return h+':'+m;return(d.getMonth()+1)+'/'+d.getDate()+' '+h+':'+m}
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
 
 /* ===== GLOBAL ===== */
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.mo.on').forEach(function(m){m.classList.remove('on')});cMV();document.getElementById('eP').classList.remove('on');if(C.on)eC()}});
 window.addEventListener('resize',function(){if(window.innerWidth>768)document.getElementById('side').classList.remove('hm')});
-
-/* Alias for template onclick */
-var sC=startC;
-
 init();
 </script>
 </body>
